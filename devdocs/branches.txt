@@ -1,0 +1,10 @@
+master:
+- libraries in requirements.txt fixed to particular version
+- pdf file created correctly
+- but binder failes
+
+library-current-versions:
+- like master, but
+- requirements.txt has most recent version
+- I hope this works for binder, and in the future becomes the master
+  (when the nbconvert bug is fixed).
