@@ -1,8 +1,8 @@
-Last compiled: Thu Aug 23 16:38:22 UTC 2018
+Last compiled: Sun Dec  8 22:30:04 UTC 2019
  
 Last commit:
-commit ed7794343d11d78a7c67eecde7c6bb3a2dd636f0
+commit 6326f54f8f0a253e986f967b1b81773713092394
 Author: Hans Fangohr <fangohr@soton.ac.uk>
-Date:   Thu Aug 23 12:37:06 2018 -0400
+Date:   Sun Jun 23 17:18:41 2019 +0200
 
-    Rerun creation of html and pdf (after minor updates)
+    add missing pandas dependency
