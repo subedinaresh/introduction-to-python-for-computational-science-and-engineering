@@ -1,8 +1,10 @@
-Last compiled: Sat Sep  8 14:15:03 CEST 2018
+Last compiled: Wed Jan 22 20:23:46 UTC 2020
  
 Last commit:
-commit e95552580ca865aa975d8f473a5993618f234fa1
-Author: Hans Fangohr escape <hans.fangohr@xfel.eu>
-Date:   Sat Sep 8 14:04:34 2018 +0200
+commit af2d6369f2d0ec14c4fbd6454d4f3e67e0bb3863
+Author: Hans Fangohr <hans.fangohr@xfel.eu>
+Date:   Tue Jan 21 21:50:22 2020 +0100
 
-    fix name (must be docs for github pages)
+    remove <span> from quotes
+    
+    resolves issue with missing cell text in 04-introspection.html
