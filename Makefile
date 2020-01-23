@@ -57,24 +57,24 @@ clean:
 
 # build docker image locally, needs to be done first
 docker-build:
-	docker build -t python4compscience -f tools/docker/Dockerfile .
+	docker build -t python4compscience2 -f tools/docker/Dockerfile .
 
 
 # build pdf and html through container
 docker-html:
-	docker run -v `pwd`:/io python4compscience make notebooks-html
+	docker run -v `pwd`:/io python4compscience2 make notebooks-html
 
 docker-pdf:
-	docker run -v `pwd`:/io python4compscience make notebooks-pdf
+	docker run -v `pwd`:/io python4compscience2 make notebooks-pdf
 
 docker-nbval:
-	docker run -v `pwd`:/io python4compscience make nbval
+	docker run -v `pwd`:/io python4compscience2 make nbval
 
 docker-check-py35:
-	docker run -v `pwd`:/io python4compscience make check-py35
+	docker run -v `pwd`:/io python4compscience2 make check-py35
 
 docker-check-pandas:
-	docker run -v `pwd`:/io python4compscience make check-pandas
+	docker run -v `pwd`:/io python4compscience2 make check-pandas
 
 
 # to update the title page:
