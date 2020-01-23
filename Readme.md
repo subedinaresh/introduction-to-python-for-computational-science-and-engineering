@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/fangohr/introduction-to-python-for-computational-science-and-engineering/prepandas?filepath=index.ipynb)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/fangohr/introduction-to-python-for-computational-science-and-engineering/library-current-versions?filepath=index.ipynb)
 [![Build Status](https://travis-ci.org/fangohr/introduction-to-python-for-computational-science-and-engineering.svg?branch=master)](https://travis-ci.org/fangohr/introduction-to-python-for-computational-science-and-engineering)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1411868.svg)](https://doi.org/10.5281/zenodo.1411868)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
@@ -10,7 +10,7 @@
 </a>
 
 An [Introduction to Python for Computational Science and
-Engineering](https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/blob/review-readme-2018-09-08/Readme.md), developed by Hans Fangohr (2003-2018).
+Engineering](https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/blob/review-readme-2018-09-08/Readme.md), developed by Hans Fangohr (2003-2020).
 
 The content and methods taught are intended for a target audience of
 scientists and engineers who need to use computational methods and
@@ -19,8 +19,8 @@ experience or formal computer science training.
 
 The book is available
 - [pdf](https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/raw/master/pdf/Introduction-to-Python-for-Computational-Science-and-Engineering.pdf) ([version](pdf/version.txt))
-- interactively [as Jupyter Notebooks on MyBinder](https://mybinder.org/v2/gh/fangohr/introduction-to-python-for-computational-science-and-engineering/prepandas?filepath=index.ipynb); probably the most attractive version of the book as any code examples can be executed and modified immediately to explore the language and improve one's understanding.
-  ([Use JupyterLab](https://mybinder.org/v2/gh/fangohr/introduction-to-python-for-computational-science-and-engineering/prepandas?urlpath=lab/tree/index.ipynb) instead of the traditional Notebook.)
+- interactively [as Jupyter Notebooks on MyBinder](https://mybinder.org/v2/gh/fangohr/introduction-to-python-for-computational-science-and-engineering/library-current-versions?filepath=index.ipynb); probably the most attractive version of the book as any code examples can be executed and modified immediately to explore the language and improve one's understanding.
+  ([Use JupyterLab](https://mybinder.org/v2/gh/fangohr/introduction-to-python-for-computational-science-and-engineering/library-current-versions?urlpath=lab/tree/index.ipynb) instead of the traditional Notebook.)
 - html ([online](https://fangohr.github.io/introduction-to-python-for-computational-science-and-engineering/)
   or [in this zip file in the docs folder](https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/archive/master.zip)) ([version](docs/version.txt))
 - downloadable Jupyter Notebook files (`*.ipynb`) ([in this zip file](https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/archive/master.zip))
@@ -68,6 +68,20 @@ Please use this citation:
 
 * Hans Fangohr, *Python for Computational Science and Engineering*,
   2018, DOI: [10.5281/zenodo.1411868](https://doi.org/10.5281/zenodo.1411868), [github.com/fangohr/introduction-to-python-for-computational-science-and-engineering](https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/blob/master/Readme.md)
+  
+For BibTeX:
+```
+@misc{fangohr-python-book,
+  doi = {10.5281/ZENODO.1411868},
+  url = {https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering},
+  author = {Fangohr,  Hans},
+  keywords = {Python,  Education,  Textbook,  Computational Science,  Data Science,  Jupyter},
+  language = {en},
+  title = {Introduction To {Python} For Computational Science And Engineering},
+  publisher = {Zenodo},
+  year = {2019}
+}
+```
 
 # License
 
@@ -89,8 +103,8 @@ Hans Fangohr is a researcher and teacher (see
 include effective software engineering for computational science and
 data science, researching computational modelling and data analysis
 methods, and education. He is a Professor at the [University of
-Southampton (UK)](http://www.southampton.ac.uk) and Data Analysis
-Scientist at the [European X-ray Free Electron Laser (EuXFEL)
+Southampton (UK)](http://www.southampton.ac.uk) and Head of Data Analysis
+at the [European X-ray Free Electron Laser (EuXFEL)
 facility (Germany)](https://xfel.eu).
 
 
