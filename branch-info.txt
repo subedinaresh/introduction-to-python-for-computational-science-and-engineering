@@ -1,0 +1,102 @@
+History of pdf creation from notebooks:
+
+We used to have a fixed set of dependencies to work around a problem becoming visible when
+running creation of pdfs from notebook (with bookbook, the command is 'make notebooks-pdf').
+The problem seems to relate to nbconvert.
+
+The fixed dependencies are described further at
+
+https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/blob/library-current-versions/devdocs/branches.txt
+
+The fixed dependencies are implemented in the master branch: https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/blob/master/requirements.txt
+
+
+As of September 2020, it turns out that these fixed dependencies seem not to be compatible anymore:
+An automatic (monthly?) re-build failed (https://travis-ci.org/github/fangohr/introduction-to-python-for-computational-science-and-engineering/builds/720412420#L2412) with the message:
+"pandas 1.1.1 requires numpy>=1.15.4, but you'll have numpy 1.15.1 which is incompatible."
+
+
+So I went back to the version with the current libraries. The failure of the 'make notebooks-pdf' could be fixed by this commit: https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/commit/2ece6f2a83e638440251355d138a8dd508a08f0d
+[The associated CI build still fails because the nbval tests fail.]
+
+This results in a new problem (which has been reported at https://github.com/jupyter/nbconvert/issues/1223), where in chapter 12 (symbolic calculations), the font changes from normal (serif) to monospace, and stays monospaced for the remainder of the book.
+
+To get rid of this, I installed nbconvert version 6 (or at least a pre-release). This is in this changeset:
+https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/commit/883e1e39ce2437aead62296463168e4fa6a84558
+
+(I started from the master branch, not current-libraries branch and thus had to fix the template file in https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/commit/af79727b9d069325e1b72d78f5d7d91c7656be24 as before in 2ece6f2a83e638440251355d138a8dd508a08f0d).
+
+So, at this point, the notebook creation fails because finding the template file seems to fail:
+
+fangohr@MBA13 ~/git/introduction-to-python-for-computational-science-and-engineering                                           [18:39:16]
+    (book) > $ docker run -v `pwd`:/io python4compscience python3 -m bookbook.latex --pdf --template static/latex_template.tplx
+    INFO:__main__:Combined 18 files
+    INFO:__main__:Converting to pdf
+    Traceback (most recent call last):
+      File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+        "__main__", mod_spec)
+      File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+        exec(code, run_globals)
+      File "/usr/local/lib/python3.6/dist-packages/bookbook/latex.py", line 163, in <module>
+        main()
+      File "/usr/local/lib/python3.6/dist-packages/bookbook/latex.py", line 160, in main
+        combine_and_convert(args.source_dir, args.output_file, args.pdf, args.template)
+      File "/usr/local/lib/python3.6/dist-packages/bookbook/latex.py", line 145, in combine_and_convert
+        export(combined_nb, output_file, pdf=pdf, template_file=template_file)
+      File "/usr/local/lib/python3.6/dist-packages/bookbook/latex.py", line 139, in export
+        output, resources = exporter.from_notebook_node(combined_nb, resources)
+      File "/usr/local/lib/python3.6/dist-packages/nbconvert/exporters/pdf.py", line 169, in from_notebook_node
+        nb, resources=resources, **kw
+      File "/usr/local/lib/python3.6/dist-packages/nbconvert/exporters/latex.py", line 77, in from_notebook_node
+        return super().from_notebook_node(nb, resources, **kw)
+      File "/usr/local/lib/python3.6/dist-packages/nbconvert/exporters/templateexporter.py", line 382, in from_notebook_node
+        output = self.template.render(nb=nb_copy, resources=resources)
+      File "/usr/local/lib/python3.6/dist-packages/nbconvert/exporters/templateexporter.py", line 143, in template
+        self._template_cached = self._load_template()
+      File "/usr/local/lib/python3.6/dist-packages/nbconvert/exporters/templateexporter.py", line 353, in _load_template
+        return self.environment.get_template(template_file)
+      File "/usr/local/lib/python3.6/dist-packages/jinja2/environment.py", line 883, in get_template
+        return self._load_template(name, self.make_globals(globals))
+      File "/usr/local/lib/python3.6/dist-packages/jinja2/environment.py", line 857, in _load_template
+        template = self.loader.load(self, name, globals)
+      File "/usr/local/lib/python3.6/dist-packages/jinja2/loaders.py", line 429, in load
+        raise TemplateNotFound(name)
+    jinja2.exceptions.TemplateNotFound: latex_template.tplx
+    
+                                       
+    
+One can work around this, by calling the bookbook module without a template file:
+    
+    fangohr@MBA13 ~/git/introduction-to-python-for-computational-science-and-engineering                                           [18:39:45] 
+    (book) > $ docker run -v `pwd`:/io python4compscience python3 -m bookbook.latex --pdf                            [±towards-nbconvert6 ●●]
+    INFO:__main__:Combined 18 files
+    INFO:__main__:Converting to pdf
+    INFO:traitlets:Support files will be in combined_files/
+    INFO:traitlets:Making directory ./combined_files
+    INFO:traitlets:Making directory ./combined_files
+    INFO:traitlets:Making directory ./combined_files
+    INFO:traitlets:Making directory ./combined_files
+    <snip>
+    INFO:traitlets:Making directory ./combined_files
+    INFO:traitlets:Making directory ./combined_files
+    INFO:traitlets:Making directory ./combined_files
+    INFO:traitlets:Writing 731003 bytes to notebook.tex
+    INFO:traitlets:Building PDF
+    INFO:traitlets:Running xelatex 3 times: ['xelatex', 'notebook.tex', '-quiet']
+    INFO:traitlets:Running bibtex 1 time: ['bibtex', 'notebook']
+    WARNING:traitlets:bibtex had problems, most likely because there were no citations
+    INFO:traitlets:PDF successfully created
+    INFO:traitlets:Writing 1089504 bytes to combined.pdf
+
+
+The format in the latex_template.tplx file may need updating with the recent changes in nbconvert (the new file static/myreport.tex.j2, added in ab329a51140f0b397d81a2389b1d3b6472eedd4a).
+
+However, for now, the file is not found. 
+
+
+
+
+
+
+
+
