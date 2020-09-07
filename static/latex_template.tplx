@@ -4,6 +4,8 @@
 \documentclass[a4paper,11pt]{article}
 ((* endblock docclass *))
 
+
+
 ((* block header *))
 ((( super() )))
 \usepackage{amssymb}% for numbers/numbers
@@ -79,7 +81,7 @@
 \sffamily(A beginner's guide to Python~3)}
 
 \author{
-\centerline{\Oldincludegraphics[width=0.4\textwidth]{static/images/mayavi/mayavi-samp.png}}\\[1cm]
+\centerline{\includegraphics[width=0.4\textwidth]{static/images/mayavi/mayavi-samp.png}}\\[1cm]
 \sffamily Prof Hans Fangohr \\[0.3cm]
 \sffamily Faculty of Engineering and the Environment\\
 \sffamily University of Southampton\\
