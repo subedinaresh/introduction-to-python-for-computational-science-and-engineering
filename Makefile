@@ -53,6 +53,18 @@ clean:
 	rm -rf *.aux *.out *.log combined_files hello.txt hello.py pylabimshow* myplot* myfile* data.mat test.txt vectools.py module1.py pylabhistogram.pdf
 
 
+
+# Install nbconvert (because of this issue
+# https://github.com/jupyter/nbconvert/issues/1223)
+# nbconvert 6.0 is not released yet (as of Sept 2020)
+nbconvert6:
+  # just in case it is installed already
+	python3 -m pip uninstall nbconvert
+	# install pre-release 6.0.0b7
+	python3 -m pip install git+https://github.com/jupyter/nbconvert.git@6.0.0b7
+
+
+
 # To use Docker container for building and testing
 
 # build docker image locally, needs to be done first
